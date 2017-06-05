@@ -26,8 +26,7 @@ General talk overview
   * Look at distribution of EM slopes for each frequency for derived and "true"
   * What can these tell us?
   * Look at 1D EM distributions (true and inverted) for area highlighted by the Warren paper
-* Other diagnostics
-  This is mostly just concluding stuff, only diagnostic I plan to talk about in depth is the EM slope
+* Other diagnostics--This is mostly just concluding stuff, only diagnostic I plan to talk about in depth is the EM slope
   * Doppler shifts and line widths
   * Time lag maps (a la Viall and Klimchuk 2017, in press)
 
