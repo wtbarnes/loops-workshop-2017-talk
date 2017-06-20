@@ -4,7 +4,7 @@ layout: true
 
 <!-- This slide will serve as the base layout for all your slides -->
 .bottom-bar[
-  {{title}}
+  <img src="../img/rice_owl_logo.transparent.png" style="float: right; width: 35px;">
 ]
 
 ---
@@ -36,7 +36,7 @@ $$e^{i\pi} + 1 = 0$$
 
 Use [Markdown](https://github.com/adam-p/markdown-here/wiki/Markdown-Cheatsheet) to write your slides. Don't be afraid, it's really easy!
 
---
+---
 
 ## Making points
 
@@ -57,6 +57,8 @@ Look how you can make *some* points:
 Give details about synthesizar code, what we do
 
 It would be nice to provide a flow chart of the code, e.g. using networkx or something like that
+
+---
 
 ## Syntax highlighting
 
@@ -79,6 +81,8 @@ What active region we are looking at
 What heating frequencies and energy distribution, show them
 
 What results were synthesized, lines, channels, etc.
+
+---
 
 ## 12-column grid layout
 
