@@ -1,5 +1,7 @@
 # Ignore temporary backslide directory
 loops-workshop-2017-talk/.tmp/
+# Ignore HTML output directory
+loops-workshop-2017-talk/html_output/
 
 # Byte-compiled / optimized / DLL files
 __pycache__/
