@@ -4,13 +4,13 @@ layout: true
 
 <!-- This slide will serve as the base layout for all your slides -->
 .bottom-bar[
-  <img src="../img/rice_owl_logo.transparent.png" style="float: right; width: 35px;">
+  <img src="img/rice_owl_logo.transparent.png" style="float: right; height: 40px;">
 ]
 
 ---
 
 class: impact
-background-image: url("../img/Rice_University_seal.svg.transparent.png")
+background-image: url("img/Rice_University_seal.svg.transparent.png")
 background-size: contain
 background-blend-mode: overlay;
 
@@ -18,6 +18,11 @@ background-blend-mode: overlay;
 ## Will Barnes, Stephen Bradshaw
 ## 8th Coronal Loops Workshop &ndash; Palermo, Italy
 ## 28 June 2017
+
+---
+
+# Outline
+Give overview of talk here
 
 ---
 
@@ -29,9 +34,18 @@ Mention our previous papers, what did they tell us
 
 Define what we mean by a "heating frequency"
 
-Two primary questions:
-* ## What are the signatures of these different heating frequencies?
-* ## Are these signatures detectable?
+Many factors likely to obscure EM
+* multiple emitting structures along the LOS
+* nonequilibrium ionization
+* difficulties due to inversion
+* lack of spectral coverage in detectors
+
+---
+
+## Two primary questions:
+* How does varying the heating frequency manifest itself in observable signatures?
+* Are these signatures detectable?
+
 ---
 
 ## Making points
@@ -72,15 +86,57 @@ Heat electrons or ions *dynamically* and model *spatially-averaged coronal* quan
 
 # Experiment Details
 
+* Follow approach of [Warren et al. (2012)][warren_systematic_2012]
+* Use AR NOAA 1109 (#9 in Table 1) from 29 September 2010
+* Model 10<sup>3</sup> individual fieldlines with two-fluid EBTEL model for ≈2&times;10<sup>4</sup> s
+* Each individual strand evolves indpendently according to EBTEL model
+* Calculate emission from *all* ions in the CHIANTI database (AIA)
+* Synthesize *wavelength-resolved* intensity for 22 transitions (EIS)
+* Repeat for four different average waiting times, $$ t_N=250,750,2500,5000\,\,\mathrm{s}$$
 
-What active region we are looking at
 
-What heating frequencies and energy distribution, show them (shown in previous slide)
+---
+class: full,middle,center
+background-image: url("img/aia_and_hmi_observations.png")
+background-size: contain
+---
+class: middle
 
-What results were synthesized, lines, channels, etc.
+.col-6[
+  <img src="img/contribution_fns.png" style="float:left" width="550px">
+]
+.col-6[
+
+  | Ion         | Wavelength                               | Ion         | Wavelength                               |
+  |:------------|:-----------------------------------------|:------------|:-----------------------------------------|
+  |    S X      |            264.2306                      |    Si X     |            258.374                       |
+  |    Fe X     |            184.537                       |    Fe XII   |              195.119                     |
+  |    Fe IX    |              188.493                     |    Fe IX    |              197.854                     |
+  |    Fe XII   |              192.394                     |    Fe XVI   |              262.976                     |
+  |    Fe XI    |             180.401                      |    S XIII   |               256.6852                   |
+  |    Ca XV    |             200.9719                     |    Fe XV    |             284.163                      |
+  |    Fe XIII  |               202.044                    |    Fe XIV   |              264.7889                    |
+  |    Fe XIII  |               203.826                    |    Ca XVI   |              208.585                     |
+  |    Fe XIV   |              270.5208                    |    Fe XI    |             188.216                      |
+  |    Ca XVII  |                192.8532                  |    Si VII   |               275.3612                   | 
+  |    Ca XIV   |              193.8661                    |    Ar XIV   |              194.401                     |   
+]
+
 ---
 
 # Heating Parameter Space
+
+.col-6[
+* Each strand heated independently
+* Triangual pulses with duration `\(\tau=200\,\,\mathrm{s}\)`
+* Total input energy per strand set by $$E = \frac{(\epsilon B)^2}{8\pi}$$ where `\(B\)` is determined from the field extrapolation and `\(\epsilon=0.1\)`
+* Event energies chosen from a power-law distribution with `\(\alpha=-2.5\)`
+* `\(t_{N,i}\propto E_i\)` such that larger events require a longer "winding time"
+]
+
+.col-6[
+<img src="img/wait_time_distribution.png" style="float:left" width="550px">
+]
 
 ---
 
@@ -89,6 +145,8 @@ Show some movies of concurrent AIA and EIS measurements, e.g. AIA in a particula
 a spectra from EIS for one of the channels
 
 Play gifs side by side
+
+Save this for last as it will likely take the longest
 
 ---
 
@@ -143,4 +201,5 @@ You can use .alt[shortcut] syntax to apply .big[some style!]
 ...or just <span class="alt">HTML</span> if you prefer.
 
 [barnes_inference_2016a]: http://adsabs.harvard.edu/abs/2016arXiv160804776B
+[warren_systematic_2012]: http://adsabs.harvard.edu/abs/2012ApJ...759..141W
 

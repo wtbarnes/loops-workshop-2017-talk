@@ -60,7 +60,8 @@ blockquote {
 
 .remark-slide-content {
   font-size: $font-size;
-  padding: 1em 2em;
+  padding: 0em 1em 1em 1em;
+  //padding: 1em 2em;
   color: $text-dark;
   background-size: cover;
 }
@@ -112,6 +113,14 @@ blockquote {
 
 // Utilities
 // ---------------------------------------------------------------------------
+
+table {
+    border-collapse: collapse;
+}
+th, td {
+    padding: 4px;
+    border: 1px solid black;
+}
 
 // Positioning
 .side-layer {
