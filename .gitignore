@@ -2,6 +2,8 @@
 loops-workshop-2017-talk/.tmp/
 # Ignore HTML output directory
 loops-workshop-2017-talk/html_output/
+# Ignore data directory
+data/
 
 # Byte-compiled / optimized / DLL files
 __pycache__/
