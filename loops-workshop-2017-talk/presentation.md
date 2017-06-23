@@ -4,7 +4,8 @@ layout: true
 
 <!-- This slide will serve as the base layout for all your slides -->
 .bottom-bar[
-  <img src="img/rice_owl_logo.transparent.png" style="float: right; height: 40px;">
+  <a href="https://wtbarnes.github.io/loops-workshop-2017-talk/" style="color:#f8f8f8;">wtbarnes.github.io/loops-workshop-2017-talk</a>
+  <img src="img/rice_owl_logo.transparent.png" style="float: right; height: 35px;">
 ]
 
 ---
@@ -22,7 +23,13 @@ background-blend-mode: overlay;
 ---
 
 # Outline
-Give overview of talk here
+* Heating Frequency in AR Cores
+* Forward Modeling Pipeline
+* Hydrodynamic Loop Model
+* Heating Parameter Space
+* Diagnostics
+  * True and Predicted Emission Measures
+  * Emission Measure Slopes
 
 ---
 
@@ -128,8 +135,9 @@ class: middle
 
 .col-6[
 * Each strand heated independently
+* Preferentially heat electrons
 * Triangual pulses with duration `\(\tau=200\,\,\mathrm{s}\)`
-* Total input energy per strand set by $$E = \frac{(\epsilon B)^2}{8\pi}$$ where `\(B\)` is determined from the field extrapolation and `\(\epsilon=0.1\)`
+* Total input energy per strand set by $$E = \frac{(\epsilon B)^2}{8\pi}$$ 
 * Event energies chosen from a power-law distribution with `\(\alpha=-2.5\)`
 * `\(t_{N,i}\propto E_i\)` such that larger events require a longer "winding time"
 ]
@@ -137,6 +145,9 @@ class: middle
 .col-6[
 <img src="img/wait_time_distribution.png" style="float:left" width="550px">
 ]
+
+???
+`\(B\)` is determined from the field extrapolation and `\(\epsilon=0.1\)`
 
 ---
 
@@ -151,6 +162,22 @@ Save this for last as it will likely take the longest
 ---
 
 # Diagnostics
+* Calculate the *true* emission measure from simulated thermodynamic quantities, $$\mathrm{EM}(T) = \int_{\mathrm{LOS}}\mathrm{d}h\,n^2(h,T)$$ 
+* Bin in temperature `\(5.6<\log{T}<7.0\)` with width `\(\Delta\log{T}=0.05\)`
+* Calculate *predicted* emission measure from the regularized inversion code of [Hannah and Kontar (2012)][hannah_differential_2012]
+  * Assume 25% uncertainty on our intensities to balance acceptable `\(\chi^2\)` and smoothness
+  * Apply to single-pixel **and** full AR
+* Fit power-law to cool side such that `\(\mathrm{EM}\sim T^a\)`
+  * Fit between 1 MK and 4 MK (3 MK) for true (predicted) emission measure
+  * Only fit to pixels where `\(\mathrm{EM}(T)>10^{25}\)` and acceptable fit `\(R^2>0.95\)`
+
+???
+Integrated intensities for all 22 spectral lines as observed by EIS
+
+HK12 gives us error bars in both temperature and emission measure
+
+---
+
 Emission measure distributions for idealized case for all four heating frequencies, i.e. density squared integrated along LOS
 
 Apply DEM inversion method to synthesized time-averaged intensities. Show 2D maps of EM for different frequencies and maps of EM slope. Do this for inverted and ground truth EM
@@ -202,4 +229,5 @@ You can use .alt[shortcut] syntax to apply .big[some style!]
 
 [barnes_inference_2016a]: http://adsabs.harvard.edu/abs/2016arXiv160804776B
 [warren_systematic_2012]: http://adsabs.harvard.edu/abs/2012ApJ...759..141W
+[hannah_differential_2012]: http://adsabs.harvard.edu/abs/2012A%26A...539A.146H
 
