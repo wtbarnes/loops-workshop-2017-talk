@@ -1,0 +1,21 @@
+dist: trusty
+branches:
+  only:
+  - master
+node_js:
+- 6.9.4
+install:
+- npm install -g backslide
+- pip install ghp-import
+script:
+- cd loops-workshop-2017-talk
+- bs export -l -o html_output
+- cp template/remark.min.js html_output/
+- cp -r template/img html_output/
+- cd ..
+after_script:
+- ghp-import -m "Publish slides" -b gh-pages loops-workshop-2017-talk/html_output
+- git push -fq https://${GH_TOKEN}@github.com/${TRAVIS_REPO_SLUG} gh-pages
+env:
+  global:
+  - secure: L+M0EHgMhCaeeLvdRkj0qP4uNahv8dR9Vm0ISYBNDqUIl4uxxFTn3xXZ3KjeuEFn2plIDYUDncETd+kvTFB6GSlEWK3RUmcUZlyPO2LHqhOBSIb/0SWt/rhm1iYTUORDZ+JF0AUAoRAxYpG3lkiLdbKw7MFrBKw+aB1Krk/AqLE6XF+2Ac3Wb3Nb56j8C/5DmsAyLN8TRGCqg7UKphygDF4co8j4AhMxhtNTtmXvzCZcgbReuqCTuHQcmAZF8jOFC4dwI4wLxol2GxsvyhkyM2Tk1OmVv/3m9HEzplUZHMeq8t0HbfeWI9jYT2Pc0tmxSEIyJNkz/1W6RgQ9UZsGeardMBETTC1w25nNVuHOq6gc0+i/So9NU9yonGbW6ZI/R25zQbZCscgL0mb1MPsNdrbfgv+ua8GJzASn5FCAaZj3LeuHIjkBOtOFpzAWo8/FZiT8/dp3Y3r2/Ad5QWl10Wan1ZxxAffZfFh9YihbSY/GqUCgOTiSVd0iBYXZnBx5my9LByksieaRvdL6ty46+CYES/9TUFJ7fpog4zBshZP11pMwsvYEHzP5/zf5aAnYT0HvYyzcvCmzYvQM6BfRj6XrUMoupLcXD9JKZefbpEYPL1rtoaNmiDt2j5DH7hzfHow9XNiwEX9ae9Ppbv8wTRBblTbg3MEaYwRiodC298g=
