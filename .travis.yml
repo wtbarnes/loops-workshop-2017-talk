@@ -8,11 +8,9 @@ install:
 - npm install -g backslide
 - pip install ghp-import
 script:
-- cd loops-workshop-2017-talk
-- bs export -l -o html_output
+- cd loops-workshop-2017-talk && bs export -l -o html_output && mv html_output/presentation.html html_output/index.html
 - cp template/remark.min.js html_output/
-- cp -r template/img html_output/
-- cd ..
+- cp -r template/img html_output/ && cd ..
 after_script:
 - ghp-import -m "Publish slides" -b gh-pages loops-workshop-2017-talk/html_output
 - git push -fq https://${GH_TOKEN}@github.com/${TRAVIS_REPO_SLUG} gh-pages
