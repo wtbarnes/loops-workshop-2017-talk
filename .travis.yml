@@ -8,7 +8,7 @@ install:
 - npm install -g backslide
 - pip install ghp-import
 script:
-- cd loops-workshop-2017-talk && bs export -l -o html_output && mv html_output/presentation.html html_output/index.html
+- cd loops-workshop-2017-talk && bs export -l -r -o html_output && mv html_output/presentation.html html_output/index.html
 - cp template/remark.min.js html_output/
 - cp -r template/img html_output/ && cd ..
 after_script:
