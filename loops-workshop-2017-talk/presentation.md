@@ -76,12 +76,12 @@ Heat electrons or ions *dynamically* and model *spatially-averaged coronal* quan
 
 ---
 
-# Experiment Details
+# Model Setup
 
 * Follow approach of [Warren et al. (2012)][warren_systematic_2012]
 * Use AR NOAA 1109 (#9 in Table 1) from 29 September 2010
 * Model 10<sup>3</sup> individual fieldlines with two-fluid EBTEL model for ≈2&times;10<sup>4</sup> s
-* Each individual strand evolves indpendently according to EBTEL model
+* Each individual strand evolves independently according to EBTEL model
 * Calculate emission from *all* ions in the CHIANTI database (AIA)
 * Synthesize *wavelength-resolved* intensity for 22 transitions (EIS)
 * Repeat for four different average waiting times, $$ t_N=250,750,2500,5000\,\,\mathrm{s}$$
@@ -143,6 +143,10 @@ class: top
 ???
 `\(B\)` is determined from the field extrapolation and `\(\epsilon=0.1\)`
 
+---
+class: full,middle,center
+background-image: url("img/temperature_density_profiles.png")
+background-size: contain
 ---
 
 # Dynamic Results

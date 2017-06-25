@@ -6,6 +6,7 @@ node_js:
 - 6.9.4
 install:
 - npm install -g backslide
+- npm install --prefix loops-workshop-2017-talk/html_output mathjax
 - pip install ghp-import
 script:
 - cd loops-workshop-2017-talk && bs export -l -r -o html_output && mv html_output/presentation.html html_output/index.html
