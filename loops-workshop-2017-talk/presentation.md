@@ -55,21 +55,6 @@ Many factors likely to obscure EM
 
 ---
 
-## Making points
-
-Look how you can make *some* points:
---
-
-- Create slides with your **favorite text editor**
---
-
-- Focus on your **content**, not the tool
---
-
-- You can finally be **productive**!
-
----
-
 # Forward Modeling Global Active Regions
 Give details about synthesizar code, what we do
 
@@ -106,32 +91,41 @@ Heat electrons or ions *dynamically* and model *spatially-averaged coronal* quan
 class: full,middle,center
 background-image: url("img/aia_and_hmi_observations.png")
 background-size: contain
+
+???
+Trace 1000 fieldlines through extrapolated field
+
+Require that they are between Mm and Mm
+
+Only closed field
 ---
-class: middle
+class: top
+
+## Spectroscopic Details
 
 .col-6[
   <img src="img/contribution_fns.png" style="float:left" width="550px">
 ]
 .col-6[
 
-  | Ion         | Wavelength                               | Ion         | Wavelength                               |
-  |:------------|:-----------------------------------------|:------------|:-----------------------------------------|
-  |    S X      |            264.2306                      |    Si X     |            258.374                       |
-  |    Fe X     |            184.537                       |    Fe XII   |              195.119                     |
-  |    Fe IX    |              188.493                     |    Fe IX    |              197.854                     |
-  |    Fe XII   |              192.394                     |    Fe XVI   |              262.976                     |
-  |    Fe XI    |             180.401                      |    S XIII   |               256.6852                   |
-  |    Ca XV    |             200.9719                     |    Fe XV    |             284.163                      |
-  |    Fe XIII  |               202.044                    |    Fe XIV   |              264.7889                    |
-  |    Fe XIII  |               203.826                    |    Ca XVI   |              208.585                     |
-  |    Fe XIV   |              270.5208                    |    Fe XI    |             188.216                      |
-  |    Ca XVII  |                192.8532                  |    Si VII   |               275.3612                   | 
-  |    Ca XIV   |              193.8661                    |    Ar XIV   |              194.401                     |   
+| Ion         | Wavelength  | Ion         | Wavelength   |
+|:------------|:------------|:------------|:-------------|
+|    S X      |   264.2306  |    Si X     |  258.374     |
+|    Fe X     |   184.537   |    Fe XII   |  195.119     |
+|    Fe IX    |   188.493   |    Fe IX    |  197.854     |
+|    Fe XII   |   192.394   |    Fe XVI   |  262.976     |
+|    Fe XI    |   180.401   |    S XIII   |  256.6852    |
+|    Ca XV    |   200.9719  |    Fe XV    |  284.163     |
+|    Fe XIII  |   202.044   |    Fe XIV   |  264.7889    |
+|    Fe XIII  |   203.826   |    Ca XVI   |  208.585     |
+|    Fe XIV   |   270.5208  |    Fe XI    |  188.216     |
+|    Ca XVII  |   192.8532  |    Si VII   |  275.3612    | 
+|    Ca XIV   |   193.8661  |    Ar XIV   |  194.401     |   
 ]
 
 ---
 
-# Heating Parameter Space
+## Heating Parameter Space
 
 .col-6[
 * Each strand heated independently
@@ -166,29 +160,114 @@ Save this for last as it will likely take the longest
 * Bin in temperature `\(5.6<\log{T}<7.0\)` with width `\(\Delta\log{T}=0.05\)`
 * Calculate *predicted* emission measure from the regularized inversion code of [Hannah and Kontar (2012)][hannah_differential_2012]
   * Assume 25% uncertainty on our intensities to balance acceptable `\(\chi^2\)` and smoothness
-  * Apply to single-pixel **and** full AR
+  * Apply to pixel-averaged **and** full AR
 * Fit power-law to cool side such that `\(\mathrm{EM}\sim T^a\)`
   * Fit between 1 MK and 4 MK (3 MK) for true (predicted) emission measure
-  * Only fit to pixels where `\(\mathrm{EM}(T)>10^{25}\)` and acceptable fit `\(R^2>0.95\)`
+  * Only fit to pixels where `\(\mathrm{EM}(T)>10^{25}\)` cm<sup>-5</sup> and acceptable fit `\(R^2>0.95\)`
 
 ???
 Integrated intensities for all 22 spectral lines as observed by EIS
 
 HK12 gives us error bars in both temperature and emission measure
-
 ---
 
+## Pixel-averaged Emission Measures
+.col-6[
+* [Warren et al. (2012)][warren_systematic_2012] constructed `\(\mathrm{EM}(T)\)` from pixel-averaged intensities in NOAA 1109
+* Time-average integrated intensities (over 5000 s interval) for same set of spectral lines 
+]
+.col-6[
+  <img src="img/eis_fe12_roi.png" style="float:left" width="600px">
+]
+
+???
+Time-averaged integrated intensity for Fe XII 195.119
+
+Blue box shows ROI over which we calculate pixel-average intensity
+
+---
+class: full,middle,center
+background-image: url("img/em_true_predict_4panel.png")
+background-size: contain
+
+???
+True EM peak ~4 MK in all cases while predicted EM peak ~3 MK. 
+
+Why is this?
+
+Note that cool and hot emission are unconstrained because of a lack of spectral information there
+
+---
+class: full,middle,center
+background-image: url("img/em_true_predict_2panel.png")
+background-size: contain
+
+???
+Bring attention to comparison with Warren results
+
+Intensities reported by Warren et al processed through HK12 inversion routine
+
+Decent agreement with t<sub>N</sub>=250 s solution though peak temperatures still offset
+
+---
+background-image: url("img/em_ar_true.gif")
+background-size: contain
+
+## Global AR Emission Measure &ndash; True
+
+???
 Emission measure distributions for idealized case for all four heating frequencies, i.e. density squared integrated along LOS
 
+---
+background-image: url("img/em_ar_predicted.gif")
+background-size: contain
+
+## Global AR Emission Measure &ndash; Predicted
+
+???
 Apply DEM inversion method to synthesized time-averaged intensities. Show 2D maps of EM for different frequencies and maps of EM slope. Do this for inverted and ground truth EM
 
+---
+background-image: url("img/em_slope_maps.png")
+background-size: contain
+
+## Emission Measure Slopes
+
+---
+background-image: url("img/em_slope_4panel.png")
+background-size: contain
+
+## Emission Measure Slopes
+
+???
 Compare distribution of EM slope values for two methods for all heating frequencies, show Warren result superimposed
 
-Look at 1D distribution for area studied by Warren et al., show ground truth
-
+---
+class: full,middle,center
+background-image: url("img/em_slope_2panel.png")
+background-size: contain
 ---
 
 # Conclusions
+* suggested constraints on heating frequency
+* global active region modeling a powerful tool
+* need more detailed loop models, e.g. HYDRAD
+* study other observables, e.g. time lag, line widths, doppler shifts
+
+---
+
+## Making points
+
+Look how you can make *some* points:
+--
+
+- Create slides with your **favorite text editor**
+--
+
+- Focus on your **content**, not the tool
+--
+
+- You can finally be **productive**!
 
 ---
 
