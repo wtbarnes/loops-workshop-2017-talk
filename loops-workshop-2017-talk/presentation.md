@@ -21,42 +21,65 @@ background-blend-mode: overlay;
 ## 28 June 2017
 
 ---
-
-# Outline
-* Heating Frequency in AR Cores
-* Forward Modeling Pipeline
-* Hydrodynamic Loop Model
-* Heating Parameter Space
-* Diagnostics
-  * True and Predicted Emission Measures
-  * Emission Measure Slopes
-
----
+class: top
 
 # Heating Frequency in AR Cores
+.col-8[
+* What is the frequency of nanoflares in AR cores?
+* Define heating frequency in terms of `\(t_N\)`
+  * `\(t_N<\tau_{cool}\)` &ndash; *high-frequency heating*
+  * `\(t_N>\tau_{cool}\)` &ndash; *low-frequency heating*
+* Emission measure slope `\(\mathrm{EM}\sim T^a\)`, `\(6.0<\log{T}<\log{T_{peak}}\)` often used as a diagnostic for heating frequency
+* Many factors hinder interpretation
+  * Multiple emitting structures along the LOS
+  * Nonequilibrium ionization
+  * Inversion techniques for finding EM
+  * Lack of spectral coverage in detectors
+]
+.col-4[
+<img src="img/reported_slopes.png" height="475px">
+]
 
+???
 Motivation, past studies, what does the slope tell us
+
+EM slope gives a measure of ratio of cool to warm plasma
+
+Steeper (shallower) slope, less (more) cool plasma, high (low) frequency heating
 
 Mention our previous papers, what did they tell us
 
-Define what we mean by a "heating frequency"
-
-Many factors likely to obscure EM
-* multiple emitting structures along the LOS
-* nonequilibrium ionization
-* difficulties due to inversion
-* lack of spectral coverage in detectors
+`\(t_N\)` is the time between successive impulsive heating events on a *single strand*
 
 ---
+class: middle
 
 ## Two primary questions:
-* How does varying the heating frequency manifest itself in observable signatures?
-* Are these signatures detectable?
+- ### What are the observational signatures of nanoflares of varying frequency?
+- ### Are these signatures detectable?
 
 ---
 
 # Forward Modeling Global Active Regions
-Give details about synthesizar code, what we do
+* `synthesizAR` &ndash; a Pure-python pipeline for producing forward-modeled instrument data products from field-aligned loop hydrodynamics
+* Workflow
+ * Select HMI observation of an AR and perform field extrapolation
+ * Configure loop simulations from field extrapolation results
+ * Load simulation ouput and map to fieldlines
+ * Synthesize emission for each spatial point and timestep
+ * Project along LOS and output data product (e.g. FITS)
+* Build up a global active region model from an ensemble of hydrodynamic loop models
+
+???
+Global = not just one isolated loop but an ensemble of loops representing an AR ("global" here does not mean the whole Sun or even the whole disk)
+
+synthesizAR relies heavily on the widely-used and well-documented scientific Python stack
+
+Customizable for any type of loop code and instrument
+
+In particular, SunPy for preserving coordinate systems, coordinate transformations
+
+CHIANTI/ChiantiPy for all atomic data
 
 It would be nice to provide a flow chart of the code, e.g. using networkx or something like that
 
@@ -74,30 +97,41 @@ p\_e =& k\_BnT\_e,\quad p\_i = k\_BnT\_i
 
 Heat electrons or ions *dynamically* and model *spatially-averaged coronal* quantities
 
+???
+For this setup,  use two-fluid EBTEL model described in appendix of Barnes et al. (2016a)
+
+Spatially-average energy and mass equations for electrons and ions, assuming quasi-neutrality
+
 ---
 
 # Model Setup
-
-* Follow approach of [Warren et al. (2012)][warren_systematic_2012]
-* Use AR NOAA 1109 (#9 in Table 1) from 29 September 2010
-* Model 10<sup>3</sup> individual fieldlines with two-fluid EBTEL model for ≈2&times;10<sup>4</sup> s
-* Each individual strand evolves independently according to EBTEL model
+.col-6[
+* Use AR NOAA 1109 (#9 in Table 1 [Warren et al. (2012)][warren_systematic_2012]) from 29 September 2010
+* Model 10<sup>3</sup> independently evolving fieldlines with two-fluid EBTEL model for ≈2&times;10<sup>4</sup> s
 * Calculate emission from *all* ions in the CHIANTI database (AIA)
 * Synthesize *wavelength-resolved* intensity for 22 transitions (EIS)
 * Repeat for four different average waiting times, $$ t_N=250,750,2500,5000\,\,\mathrm{s}$$
-
-
----
-class: full,middle,center
-background-image: url("img/aia_and_hmi_observations.png")
-background-size: contain
+]
+.col-6[
+  <img src="img/aia_and_hmi_observations.png" style="float:left" width="550px">
+]
 
 ???
+
+Pare down text in this slide, remove AIA images on previous slide. They aren't really needed and could be confusing
+
+What our goal is: constrain heating parameter space by comparing global models with *many* reported observations (statistically more powerful)
+
+What our goal is not: reproducing every feature of *specific* observations *exactly*
+
+Left panels are **observed** AIA images for channels 94 and 131
+
 Trace 1000 fieldlines through extrapolated field
 
 Require that they are between Mm and Mm
 
 Only closed field
+
 ---
 class: top
 
@@ -122,6 +156,13 @@ class: top
 |    Ca XVII  |   192.8532  |    Si VII   |  275.3612    | 
 |    Ca XIV   |   193.8661  |    Ar XIV   |  194.401     |   
 ]
+
+???
+Select spectral lines consistent with AR 9 studied by Warren et al to give good temperature coverage
+
+When synthesizing AIA images, use all ions in CHIANTI
+
+Use coronal abundances of Feldman et al. (1992)
 
 ---
 
@@ -150,10 +191,7 @@ background-size: contain
 ---
 
 # Dynamic Results
-Show some movies of concurrent AIA and EIS measurements, e.g. AIA in a particular channel for all 4 heating frequencies and 
-a spectra from EIS for one of the channels
-
-Play gifs side by side
+Show animation for a single heating frequency (probably 2500 s) showing 4 AIA channels, two EIS channels over the selected interval (7500-12500 s)
 
 Save this for last as it will likely take the longest
 
@@ -176,9 +214,11 @@ HK12 gives us error bars in both temperature and emission measure
 ---
 
 ## Pixel-averaged Emission Measures
+
 .col-6[
-* [Warren et al. (2012)][warren_systematic_2012] constructed `\(\mathrm{EM}(T)\)` from pixel-averaged intensities in NOAA 1109
-* Time-average integrated intensities (over 5000 s interval) for same set of spectral lines 
+* [Warren et al. (2012)][warren_systematic_2012] constructed `\(\mathrm{EM}(T)\)` from pixel-averaged intensities in NOAA 1109 using MCMC
+* Time-average integrated intensities (over 5000 s interval) for same set of spectral lines
+* Compare our predicted and true EM with predicted EM derived from their reported intensities
 ]
 .col-6[
   <img src="img/eis_fe12_roi.png" style="float:left" width="600px">
@@ -199,7 +239,7 @@ True EM peak ~4 MK in all cases while predicted EM peak ~3 MK.
 
 Why is this?
 
-Note that cool and hot emission are unconstrained because of a lack of spectral information there
+Note that very cool (well below 1 MK) and very hot (>8-9 MK) emission are unconstrained because of a lack of spectral information there
 
 ---
 class: full,middle,center
@@ -253,13 +293,59 @@ background-size: contain
 ---
 
 # Conclusions
-* suggested constraints on heating frequency
-* global active region modeling a powerful tool
-* need more detailed loop models, e.g. HYDRAD
-* study other observables, e.g. time lag, line widths, doppler shifts
+* Global active region modeling a powerful tool for studying dynamically-heated AR cores
+  * Efficient
+  * AR Geometry
+  * Detailed loop physics (with 1D models)
+  * Atomic physics and instrument effects
+* Relationship between predicted `\(a\)` and `\(t_N\)` much "messier" compared to true `\(a\)`
+* Predicted EM peak at lower temperatures than true EM, independent of heating frequency
+* Slope derived from Warren et al. (2012) intensities most consistent with intermediate to high-frequency heating
+* Predicted slopes for high-frequency case gives a relatively flat distribution &ndash; a reliable diagnostic?
+
+???
+* Future Work
+  * Extend work to 1D field-aligned models, e.g. HYDRAD
+  * Different observables, e.g. time lags, line widths, Doppler shifts
+
+---
+class: middle
+
+### Talk
+* [github.com/wtbarnes/loops-workshop-2017-talk](https://github.com/wtbarnes/loops-workshop-2017-talk)
+
+### Code
+* [github.com/rice-solar-physics/ebtelPlusPlus](https://github.com/rice-solar-physics/ebtelPlusPlus)
+* [github.com/wtbarnes/synthesizAR](https://github.com/wtbarnes/synthesizAR)
+
+### Built With:
+.col-3[
+  SunPy logo
+]
+.col-3[
+  Astropy logo
+]
+.col-3[
+  ChiantiPy logo
+]
+.col-3[
+  NumPy logo
+]
+
+---
+class: middle,center
+
+# Supplementary Slides
+
+---
+# `synthesizAR` Example
+
+```python
+```
 
 ---
 
+---
 ## Making points
 
 Look how you can make *some* points:
@@ -273,42 +359,6 @@ Look how you can make *some* points:
 
 - You can finally be **productive**!
 
----
-
-## 12-column grid layout
-
-Use to the included **grid layout** classes to split content easily:
-.col-6[
-  ### Left column
-
-  - I'm on the left
-  - It's neat!
-]
-.col-6[
-  ### Right column
-
-  - I'm on the right
-  - I love it!
-]
-
-## Learn the tricks
-
-See the [wiki](https://github.com/gnab/remark/wiki) to learn more of what you can do with .alt[Remark.js]
-
----
-
-## Syntax highlighting
-
-You can also add `code` to your slides:
-```html
-<div class="impact">Some HTML code</div>
-```
-
-## CSS classes
-
-You can use .alt[shortcut] syntax to apply .big[some style!]
-
-...or just <span class="alt">HTML</span> if you prefer.
 
 [barnes_inference_2016a]: http://adsabs.harvard.edu/abs/2016arXiv160804776B
 [warren_systematic_2012]: http://adsabs.harvard.edu/abs/2012ApJ...759..141W
