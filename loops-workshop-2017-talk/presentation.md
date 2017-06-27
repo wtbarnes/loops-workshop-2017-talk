@@ -52,6 +52,8 @@ Mention our previous papers, what did they tell us
 
 `\(t_N\)` is the time between successive impulsive heating events on a *single strand*
 
+is high or low or intermediate frequency or all of the above?
+
 ---
 class: middle
 
@@ -88,7 +90,7 @@ class: top
 
 # Model Setup
 .col-6[
-* Use AR NOAA 1109 (#9 in Table 1 [Warren et al., 2012)][warren_systematic_2012]) from 29 September 2010
+* Use AR NOAA 1109 (#9 in Table 1 [Warren et al., 2012][warren_systematic_2012]) from 29 September 2010
 * Model 10<sup>3</sup> independently evolving fieldlines with two-fluid EBTEL model for ≈2&times;10<sup>4</sup> s
 * Calculate emission from *all* ions in the CHIANTI database (AIA)
 * Synthesize *wavelength-resolved* intensity for 22 transitions (EIS)
@@ -305,8 +307,10 @@ background-size: contain
   * Extend work to 1D field-aligned models, e.g. HYDRAD
   * Different observables, e.g. time lags, line widths, Doppler shifts
 
+Statistical study of EM slopes in an observed AR and compare EM slope distributions
+
 ---
-class: middle
+class: bottom
 
 ### Talk
 * [github.com/wtbarnes/loops-workshop-2017-talk](https://github.com/wtbarnes/loops-workshop-2017-talk)
@@ -317,16 +321,17 @@ class: middle
 
 ### Built With:
 .col-3[
-  SunPy logo
+  <img src="img/sunpy_logo.svg" width="75%"></img>
 ]
 .col-3[
-  Astropy logo
+  <img src="img/astropy_logo.svg" width="63%"></img>
 ]
-.col-3[
-  ChiantiPy logo
+.col-4[
+  <img src="img/chiantipy_logo.png" width="70%"></img>
 ]
-.col-3[
-  NumPy logo
+.col-2[
+  <img src="img/numpy_logo.svg" width="75%"></img>
+
 ]
 
 ---
@@ -340,8 +345,6 @@ class: middle,center
 ```python
 import 
 ```
-
----
 
 [barnes_inference_2016a]: http://adsabs.harvard.edu/abs/2016arXiv160804776B
 [warren_systematic_2012]: http://adsabs.harvard.edu/abs/2012ApJ...759..141W
