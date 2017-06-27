@@ -103,17 +103,18 @@ For this setup,  use two-fluid EBTEL model described in appendix of Barnes et al
 Spatially-average energy and mass equations for electrons and ions, assuming quasi-neutrality
 
 ---
+class: top
 
 # Model Setup
 .col-6[
-* Use AR NOAA 1109 (#9 in Table 1 [Warren et al. (2012)][warren_systematic_2012]) from 29 September 2010
+* Use AR NOAA 1109 (#9 in Table 1 [Warren et al., 2012)][warren_systematic_2012]) from 29 September 2010
 * Model 10<sup>3</sup> independently evolving fieldlines with two-fluid EBTEL model for ≈2&times;10<sup>4</sup> s
 * Calculate emission from *all* ions in the CHIANTI database (AIA)
 * Synthesize *wavelength-resolved* intensity for 22 transitions (EIS)
 * Repeat for four different average waiting times, $$ t_N=250,750,2500,5000\,\,\mathrm{s}$$
 ]
 .col-6[
-  <img src="img/aia_and_hmi_observations.png" style="float:left" width="550px">
+  <img src="img/hmi_observations_with_streamlines.png" style="float:right" width="475px">
 ]
 
 ???
@@ -197,7 +198,7 @@ Save this for last as it will likely take the longest
 
 ---
 
-# Diagnostics
+# Emission Measure Diagnostics
 * Calculate the *true* emission measure from simulated thermodynamic quantities, $$\mathrm{EM}(T) = \int_{\mathrm{LOS}}\mathrm{d}h\,n^2(h,T)$$ 
 * Bin in temperature `\(5.6<\log{T}<7.0\)` with width `\(\Delta\log{T}=0.05\)`
 * Calculate *predicted* emission measure from the regularized inversion code of [Hannah and Kontar (2012)][hannah_differential_2012]
@@ -341,24 +342,8 @@ class: middle,center
 # `synthesizAR` Example
 
 ```python
+import 
 ```
-
----
-
----
-## Making points
-
-Look how you can make *some* points:
---
-
-- Create slides with your **favorite text editor**
---
-
-- Focus on your **content**, not the tool
---
-
-- You can finally be **productive**!
-
 
 [barnes_inference_2016a]: http://adsabs.harvard.edu/abs/2016arXiv160804776B
 [warren_systematic_2012]: http://adsabs.harvard.edu/abs/2012ApJ...759..141W
