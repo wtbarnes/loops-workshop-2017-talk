@@ -17,8 +17,9 @@ background-blend-mode: overlay;
 
 # {{title}}
 ## Will Barnes, Stephen Bradshaw
+### Rice University, Houston, TX USA
 ## 8th Coronal Loops Workshop &ndash; Palermo, Italy
-## 28 June 2017
+### 28 June 2017
 
 ---
 class: top
@@ -51,6 +52,8 @@ Mention our previous papers, what did they tell us
 
 `\(t_N\)` is the time between successive impulsive heating events on a *single strand*
 
+is high or low or intermediate frequency or all of the above?
+
 ---
 class: middle
 
@@ -62,6 +65,7 @@ class: middle
 
 # Forward Modeling Global Active Regions
 * `synthesizAR` &ndash; a Pure-python pipeline for producing forward-modeled instrument data products from field-aligned loop hydrodynamics
+* Relies heavily on the widely-used and well-documented scientific Python stack
 * Workflow
  * Select HMI observation of an AR and perform field extrapolation
  * Configure loop simulations from field extrapolation results
@@ -73,8 +77,6 @@ class: middle
 ???
 Global = not just one isolated loop but an ensemble of loops representing an AR ("global" here does not mean the whole Sun or even the whole disk)
 
-synthesizAR relies heavily on the widely-used and well-documented scientific Python stack
-
 Customizable for any type of loop code and instrument
 
 In particular, SunPy for preserving coordinate systems, coordinate transformations
@@ -84,34 +86,15 @@ CHIANTI/ChiantiPy for all atomic data
 It would be nice to provide a flow chart of the code, e.g. using networkx or something like that
 
 ---
-
-# Hydrodynamic Loop Model
-Two-fluid EBTEL model of [Barnes et al. (2016a)][barnes_inference_2016a],
-
-\begin{align}
-\frac{dp\_e}{dt} =& \frac{\gamma - 1}{L}(\psi\_{TR} - (\mathcal{R}\_{TR} + \mathcal{R}\_C)) + k\_Bn\nu\_{ei}(T\_i - T\_e) + (\gamma - 1)Q\_e \\\\
-\frac{dp\_i}{dt} =& -\frac{\gamma - 1}{L}\psi\_{TR} + k\_Bn\nu\_{ei}(T\_e - T\_i) + (\gamma - 1)Q\_i \\\\
-\frac{dn}{dt} =& \frac{c\_2(\gamma - 1)}{c\_3\gamma Lk\_BT\_e}(\psi\_{TR} - F\_{ce,0} - \mathcal{R}\_{TR}) \\\\
-p\_e =& k\_BnT\_e,\quad p\_i = k\_BnT\_i
-\end{align}
-
-Heat electrons or ions *dynamically* and model *spatially-averaged coronal* quantities
-
-???
-For this setup,  use two-fluid EBTEL model described in appendix of Barnes et al. (2016a)
-
-Spatially-average energy and mass equations for electrons and ions, assuming quasi-neutrality
-
----
 class: top
 
 # Model Setup
 .col-6[
-* Use AR NOAA 1109 (#9 in Table 1 [Warren et al., 2012)][warren_systematic_2012]) from 29 September 2010
+* Use AR NOAA 1109 (#9 in Table 1 [Warren et al., 2012][warren_systematic_2012]) from 29 September 2010
 * Model 10<sup>3</sup> independently evolving fieldlines with two-fluid EBTEL model for ≈2&times;10<sup>4</sup> s
 * Calculate emission from *all* ions in the CHIANTI database (AIA)
 * Synthesize *wavelength-resolved* intensity for 22 transitions (EIS)
-* Repeat for four different average waiting times, $$ t_N=250,750,2500,5000\,\,\mathrm{s}$$
+* Repeat for four different average waiting times, $$ \langle t_N\rangle=250,750,2500,5000\,\,\mathrm{s}$$
 ]
 .col-6[
   <img src="img/hmi_observations_with_streamlines.png" style="float:right" width="475px">
@@ -133,6 +116,23 @@ Require that they are between Mm and Mm
 
 Only closed field
 
+---
+# Hydrodynamic Loop Model
+Two-fluid EBTEL model of [Barnes et al. (2016a)][barnes_inference_2016a],
+
+\begin{align}
+\frac{dp\_e}{dt} =& \frac{\gamma - 1}{L}(\psi\_{TR} - (\mathcal{R}\_{TR} + \mathcal{R}\_C)) + k\_Bn\nu\_{ei}(T\_i - T\_e) + (\gamma - 1)Q\_e \\\\
+\frac{dp\_i}{dt} =& -\frac{\gamma - 1}{L}\psi\_{TR} + k\_Bn\nu\_{ei}(T\_e - T\_i) + (\gamma - 1)Q\_i \\\\
+\frac{dn}{dt} =& \frac{c\_2(\gamma - 1)}{c\_3\gamma Lk\_BT\_e}(\psi\_{TR} - F\_{ce,0} - \mathcal{R}\_{TR}) \\\\
+p\_e =& k\_BnT\_e,\quad p\_i = k\_BnT\_i
+\end{align}
+
+Heat electrons or ions *dynamically* and model *spatially-averaged coronal* quantities
+
+???
+For this setup,  use two-fluid EBTEL model described in appendix of Barnes et al. (2016a)
+
+Spatially-average energy and mass equations for electrons and ions, assuming quasi-neutrality
 ---
 class: top
 
@@ -191,21 +191,14 @@ background-image: url("img/temperature_density_profiles.png")
 background-size: contain
 ---
 
-# Dynamic Results
-Show animation for a single heating frequency (probably 2500 s) showing 4 AIA channels, two EIS channels over the selected interval (7500-12500 s)
-
-Save this for last as it will likely take the longest
-
----
-
 # Emission Measure Diagnostics
-* Calculate the *true* emission measure from simulated thermodynamic quantities, $$\mathrm{EM}(T) = \int_{\mathrm{LOS}}\mathrm{d}h\,n^2(h,T)$$ 
+* *True* emission measure from simulated thermodynamic quantities, $$\mathrm{EM}(T) = \int_{\mathrm{LOS}}\mathrm{d}h\,n^2(h,T)$$ 
 * Bin in temperature `\(5.6<\log{T}<7.0\)` with width `\(\Delta\log{T}=0.05\)`
-* Calculate *predicted* emission measure from the regularized inversion code of [Hannah and Kontar (2012)][hannah_differential_2012]
+* *Predicted* EM from regularized inversion code of [Hannah and Kontar (2012)][hannah_differential_2012]
   * Assume 25% uncertainty on our intensities to balance acceptable `\(\chi^2\)` and smoothness
   * Apply to pixel-averaged **and** full AR
 * Fit power-law to cool side such that `\(\mathrm{EM}\sim T^a\)`
-  * Fit between 1 MK and 4 MK (3 MK) for true (predicted) emission measure
+  * Fit between 1 MK and `\(T_{peak}\)` (4 MK true, 3 MK predicted), where `\(\mathrm{EM}_{max}=\mathrm{EM}(T_{peak})\)`
   * Only fit to pixels where `\(\mathrm{EM}(T)>10^{25}\)` cm<sup>-5</sup> and acceptable fit `\(R^2>0.95\)`
 
 ???
@@ -219,7 +212,7 @@ HK12 gives us error bars in both temperature and emission measure
 .col-6[
 * [Warren et al. (2012)][warren_systematic_2012] constructed `\(\mathrm{EM}(T)\)` from pixel-averaged intensities in NOAA 1109 using MCMC
 * Time-average integrated intensities (over 5000 s interval) for same set of spectral lines
-* Compare our predicted and true EM with predicted EM derived from their reported intensities
+* Compare predicted and true EM with predicted EM derived from reported intensities
 ]
 .col-6[
   <img src="img/eis_fe12_roi.png" style="float:left" width="600px">
@@ -292,6 +285,11 @@ class: full,middle,center
 background-image: url("img/em_slope_2panel.png")
 background-size: contain
 ---
+class: full,middle,center
+background-image: url("img/reported_slopes_with_results.png")
+background-size: contain
+---
+
 
 # Conclusions
 * Global active region modeling a powerful tool for studying dynamically-heated AR cores
@@ -301,16 +299,18 @@ background-size: contain
   * Atomic physics and instrument effects
 * Relationship between predicted `\(a\)` and `\(t_N\)` much "messier" compared to true `\(a\)`
 * Predicted EM peak at lower temperatures than true EM, independent of heating frequency
-* Slope derived from Warren et al. (2012) intensities most consistent with intermediate to high-frequency heating
 * Predicted slopes for high-frequency case gives a relatively flat distribution &ndash; a reliable diagnostic?
+* When computing model emission measure, forward model EIS lines and construct DEM region
 
 ???
 * Future Work
   * Extend work to 1D field-aligned models, e.g. HYDRAD
   * Different observables, e.g. time lags, line widths, Doppler shifts
 
+Statistical study of EM slopes in an observed AR and compare EM slope distributions
+
 ---
-class: middle
+class: bottom
 
 ### Talk
 * [github.com/wtbarnes/loops-workshop-2017-talk](https://github.com/wtbarnes/loops-workshop-2017-talk)
@@ -321,16 +321,17 @@ class: middle
 
 ### Built With:
 .col-3[
-  SunPy logo
+  <img src="img/sunpy_logo.svg" width="75%"></img>
 ]
 .col-3[
-  Astropy logo
+  <img src="img/astropy_logo.svg" width="63%"></img>
 ]
-.col-3[
-  ChiantiPy logo
+.col-4[
+  <img src="img/chiantipy_logo.png" width="70%"></img>
 ]
-.col-3[
-  NumPy logo
+.col-2[
+  <img src="img/numpy_logo.svg" width="75%"></img>
+
 ]
 
 ---
