@@ -299,8 +299,8 @@ background-size: contain
   * Atomic physics and instrument effects
 * Relationship between predicted `\(a\)` and `\(t_N\)` much "messier" compared to true `\(a\)`
 * Predicted EM peak at lower temperatures than true EM, independent of heating frequency
-* Predicted slopes for high-frequency case gives a relatively flat distribution &ndash; a reliable diagnostic?
-* When computing model emission measure, forward model EIS lines and construct DEM region
+* Observed slopes most consistent with intermediate to low frequency heating, but spread is large
+* Caution when computing emission measure from model results
 
 ???
 * Future Work
