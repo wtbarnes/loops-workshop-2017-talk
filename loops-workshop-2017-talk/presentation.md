@@ -334,18 +334,6 @@ class: bottom
 
 ]
 
----
-class: middle,center
-
-# Supplementary Slides
-
----
-# `synthesizAR` Example
-
-```python
-import 
-```
-
 [barnes_inference_2016a]: http://adsabs.harvard.edu/abs/2016arXiv160804776B
 [warren_systematic_2012]: http://adsabs.harvard.edu/abs/2012ApJ...759..141W
 [hannah_differential_2012]: http://adsabs.harvard.edu/abs/2012A%26A...539A.146H
